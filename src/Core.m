@@ -3,26 +3,48 @@ function Core()
     clear
     clc
     close all
-    %%--------------ADD_PATH-------------------
+    %%-------------- ADD PATH -------------------
 
     fullPath = mfilename('fullpath');
     currentFolder = fileparts(fullPath);
-    addpath(genpath(currentFolder));
+    rootFolder = fileparts(currentFolder);
 
+    addpath(genpath(rootFolder));
+
+    %%-------------- RESULT PATH ----------------
+
+    resultDir = fullfile(rootFolder,'result');
+
+    if ~exist(resultDir,'dir')
+        mkdir(resultDir);
+    end
+
+    targetFile = fullfile(resultDir,'Resultfile.mp4');
+    %%---------------GUI-----------------------
+    
+    disp("---------------------------------------------------")
+    disp("|                     starting                    |")
+    disp("---------------------------------------------------")
+    disp(" name : Conductor in an Electric Field             ")
+    disp(" date : autumn 1404                                ")
+    disp(" Contact me if you find any problem                ")
+    disp(" gmail : Pa.norouzieh@gmail.com                    ")
+    disp("---------------------------------------------------")
+    
     %%---------Calculate Constant--------------
 
-    [faces,vertices] = MeshFunction();
+    [faces,vertices] = MeshFunction(Implicit_function_1());
     [AreaMatric,MeshLocation] = GetAreaAndLocation(faces,vertices);
     A = CreatA(AreaMatric,MeshLocation);
 
     %%-----------------------------------------
     
     charge = 0 ;
-    T = 400;
+    T = 1000;
     
     %%------------------------------------------
 
-    N_time = 100;
+    N_time = 10;
     deltat = T/N_time;
     N = length(AreaMatric);
 
@@ -55,8 +77,15 @@ function Core()
     close(bar);
 
     %%------------------------------------------
+    
+    videoFile = targetFile;
 
-    AnimateSigma(vertices,faces,sigmaMatrix,deltat)
+    AnimateSigma(vertices...
+    ,faces...
+    ,sigmaMatrix...
+    ,potentialVector...
+    ,deltat...
+    ,videoFile)
 
 end
 
