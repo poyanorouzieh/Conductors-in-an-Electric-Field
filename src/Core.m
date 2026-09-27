@@ -1,3 +1,8 @@
+%-----------------------------------------
+clear
+clc
+close all
+%------------------------------------------
 
 [faces,vertices] = MeshFunction();
 [AreaMatric,MeshLocation] = GetAreaAndLocation(faces,vertices);
@@ -6,7 +11,7 @@ charge = 0;
 N_time = 100;
 
 % assum T
-T = 10;
+T = 400;
 
 deltat = T/N_time;
 
@@ -35,5 +40,7 @@ for n = 1:N_time
 end
 
 close(bar);
+
+AnimateSigma(vertices,faces,sigmaMatrix,deltat)
 
 

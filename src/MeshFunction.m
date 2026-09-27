@@ -14,7 +14,7 @@ z = linspace(-10,10,100);
 
 %% Implicit function of sphere
 
-F = (X./1).^2 + (Y./1).^2 + (Z./2).^2 - 1;
+F = (X).^2 + (Y).^2 + (Z).^2 - 1;
 
 %% Generate mesh
 
