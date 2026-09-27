@@ -1,34 +1,43 @@
-%-----------------------------------------
+%%---------------clear DATA----------------
 clear
 clc
 close all
-%------------------------------------------
+%%--------------ADD_PATH-------------------
+
+fullPath = mfilename('fullpath');
+currentFolder = fileparts(fullPath);
+addpath(genpath(currentFolder));
+
+%%---------Calculate Constant--------------
 
 [faces,vertices] = MeshFunction();
 [AreaMatric,MeshLocation] = GetAreaAndLocation(faces,vertices);
+A = CreatA(AreaMatric,MeshLocation);
 
-charge = 0;
-N_time = 100;
+%%-----------------------------------------
 
-% assum T
+%%------------------------------------------
+
+charge = 0 ;
 T = 400;
-
+N_time = 100;
 deltat = T/N_time;
-
 N = length(AreaMatric);
+
+%%------------------------------------------
 
 sigmaMatrix = zeros(N,N_time);
 potentialVector = zeros(1,N_time);
 
+%%------------------------------------------
 
 bar = waitbar(0, 'Runing ... ');
-
 for n = 1:N_time
 
     t = (n-1)*deltat;
 
     [sigma,potential] = CalculateCore( ...
-        AreaMatric,MeshLocation,charge,t);
+        AreaMatric,MeshLocation,charge,t,A);
 
     sigmaMatrix(:,n) = sigma;
     potentialVector(n) = potential;
@@ -39,8 +48,11 @@ for n = 1:N_time
     
 end
 
+sigmaMatrix = 9.9879e9 .* sigmaMatrix;
+
 close(bar);
 
-AnimateSigma(vertices,faces,sigmaMatrix,deltat)
+%%
 
+AnimateSigma(vertices,faces,sigmaMatrix,deltat)
 

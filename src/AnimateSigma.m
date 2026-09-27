@@ -6,8 +6,8 @@ function AnimateSigma(vertices,faces,sigmaMatrix,deltat)
 
 figure
 
-low  = prctile(sigmaMatrix(:),2);
-high = prctile(sigmaMatrix(:),98);
+low  = prctile(sigmaMatrix(:),20);
+high = prctile(sigmaMatrix(:),80);
 
 h = patch('Vertices',vertices,...
           'Faces',faces,...
