@@ -1,41 +1,40 @@
 function AnimateSigma(vertices,faces,sigmaMatrix,deltat)
+    % by AI
 
-% by AI
+    [~,N_time] = size(sigmaMatrix);
 
-[~,N_time] = size(sigmaMatrix);
+    figure
 
-figure
+    low  = prctile(sigmaMatrix(:),20);
+    high = prctile(sigmaMatrix(:),80);
 
-low  = prctile(sigmaMatrix(:),20);
-high = prctile(sigmaMatrix(:),80);
+    h = patch('Vertices',vertices,...
+              'Faces',faces,...
+              'FaceVertexCData',sigmaMatrix(:,1),...
+              'FaceColor','flat',...
+              'EdgeColor','none');
 
-h = patch('Vertices',vertices,...
-          'Faces',faces,...
-          'FaceVertexCData',sigmaMatrix(:,1),...
-          'FaceColor','flat',...
-          'EdgeColor','none');
+    axis equal
+    grid on
+    view(3)
 
-axis equal
-grid on
-view(3)
+    xlabel('x')
+    ylabel('y')
+    zlabel('z')
 
-xlabel('x')
-ylabel('y')
-zlabel('z')
-
-colorbar
+    colorbar
 
 
-caxis([low high])
+    caxis([low high])
 
-for n = 1:N_time
+    for n = 1:N_time
 
-    h.FaceVertexCData = sigmaMatrix(:,n);
+        h.FaceVertexCData = sigmaMatrix(:,n);
 
-    title(['t = ',num2str((n-1)*deltat)])
+        title(['t = ',num2str((n-1)*deltat)])
 
-    drawnow
+        drawnow
 
-end
+    end
 
 end
