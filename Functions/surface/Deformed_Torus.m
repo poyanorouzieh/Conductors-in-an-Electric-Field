@@ -1,0 +1,6 @@
+function F = Deformed_Torus()
+    F = @(X,Y,Z) ...
+    (sqrt(X.^2 + Y.^2) - 3).^2 + Z.^2 ...
+    - (1 + 0.25.*cos(3.*atan2(Y,X))).^2;
+
+end

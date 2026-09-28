@@ -19,23 +19,13 @@ function Core(EFunction, SurfaceFunction)
     end
 
     targetFile = fullfile(resultDir,'Resultfile.mp4');
-    %%---------------GUI-----------------------
-    
-    disp("---------------------------------------------------")
-    disp("|                     starting                    |")
-    disp("---------------------------------------------------")
-    disp(" name : Conductor in an Electric Field             ")
-    disp(" date : autumn 1404                                ")
-    disp(" Contact me if you find any problem                ")
-    disp(" gmail : Pa.norouzieh@gmail.com                    ")
-    disp("---------------------------------------------------")
     
     %%---------Calculate Constant--------------
 
     [faces,vertices] = MeshFunction(SurfaceFunction);
     [AreaMatric,MeshLocation] = GetAreaAndLocation(faces,vertices);
     A = CreatA(AreaMatric,MeshLocation);
-
+    
     %%-----------------------------------------
     
     charge = 0 ;
@@ -43,7 +33,7 @@ function Core(EFunction, SurfaceFunction)
     
     %%------------------------------------------
 
-    N_time = T;
+    N_time = 100;
     deltat = T/N_time;
     N = length(AreaMatric);
 
@@ -60,7 +50,7 @@ function Core(EFunction, SurfaceFunction)
         t = (n-1)*deltat;
 
         [sigma,potential] = CalculateCore( ...
-            AreaMatric,MeshLocation,charge,t,A);
+            AreaMatric,MeshLocation,charge,t,A,EFunction);
 
         sigmaMatrix(:,n) = sigma;
         potentialVector(n) = potential;

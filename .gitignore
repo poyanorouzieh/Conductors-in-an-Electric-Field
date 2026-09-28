@@ -1,0 +1,45 @@
+# MATLAB autosave and temporary files
+*.asv
+*.m~
+*.autosave
+*.slx.r*
+*.mdl.r*
+*.r20*
+
+# MATLAB cache and preference files
+mlcache/
+*.mat
+*.fig
+*.slxc
+
+# Compiled files
+*.mex*
+*.p
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+
+# Simulink files (if not needed in repo)
+*.slx
+*.sldd
+*.slreqx
+*.sltx
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*~
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Output and results folders
+output/
+results/
+logs/

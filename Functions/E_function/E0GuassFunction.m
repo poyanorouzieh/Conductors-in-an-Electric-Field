@@ -1,6 +1,8 @@
-function E0 = E0GuassFunction()
-    
-    omega = 2*pi/10;
-    E0 = @(t) [ 0 , sin(omega*t) , 0];
+function E = E0GuassFunction()
+
+E = @(X,Y,Z,t) [ ...
+    20.*exp(-((X-2.*t).^2+Y.^2+Z.^2)/4), ...
+    0.*Y, ...
+    0.*Z];
 
 end
