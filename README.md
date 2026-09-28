@@ -20,7 +20,7 @@ This project provides a flexible computational framework for studying **electros
 - **Automatic Meshing** — Converts implicit surfaces to triangulated meshes
 - **Flexible External Fields** — Supports uniform fields and arbitrary function handles for space/time-dependent fields
 - **Charge Density Computation** — Calculates surface charge density σ(r) on the conductor
-- **3D Visualization** — Renders charge distribution on the surface using MATLAB's `pdeplot3D` and `trisurf`
+- **3D Visualization** — Renders charge distribution on the surface with color mapping
 - **Time-Dependent Animation** — Animate time-varying charge distributions for dynamic field studies
 
 ### Target Applications
@@ -28,6 +28,28 @@ This project provides a flexible computational framework for studying **electros
 - Investigating the effect of geometry on charge distribution
 - Developing computational methods for electromagnetic problems
 - Educational demonstrations of conductor behavior in electric fields
+
+---
+
+## 📸 Demo
+
+### Interactive Application Interface
+
+![Application Interface](screenshots/app_interface.png)
+
+*App Designer interface for defining the conductor geometry, external field, and simulation parameters.*
+
+### Animation — Charge Redistribution
+
+![Animation 1](screenshots/animation.gif)
+
+*Time evolution of surface charge density under a time-varying external electric field.*
+
+### Animation — Dynamic Field Response
+
+![Animation 2](screenshots/animation2.gif)
+
+*Real-time animation of charge redistribution as the conductor responds to a dynamic field.*
 
 ---
 
@@ -136,12 +158,13 @@ animateChargeDistribution(geom, E_field, 0:0.1:10);
 ```
 Conductors-in-an-Electric-Field/
 ├── tutorialApp.mlapp        # Main interactive application (App Designer)
-├── src/                     # Core computational functions (coming soon)
-├── docs/                    # Documentation (coming soon)
+├── screenshots/             # Demo images and animations
+│   ├── app_interface.png
+│   ├── animation.gif
+│   └── animation2.gif
 ├── .gitignore
 ├── LICENSE                  # MIT License
-├── README.md                # This file
-└── requirements.txt         # (optional) MATLAB toolboxes needed
+└── README.md                # This file
 ```
 
 ---
