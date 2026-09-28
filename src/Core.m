@@ -1,6 +1,6 @@
-function Core()
+function Core(EFunction, SurfaceFunction)
     %%---------------clear DATA----------------
-    clear
+    
     clc
     close all
     %%-------------- ADD PATH -------------------
@@ -8,7 +8,6 @@ function Core()
     fullPath = mfilename('fullpath');
     currentFolder = fileparts(fullPath);
     rootFolder = fileparts(currentFolder);
-
     addpath(genpath(rootFolder));
 
     %%-------------- RESULT PATH ----------------
@@ -33,7 +32,7 @@ function Core()
     
     %%---------Calculate Constant--------------
 
-    [faces,vertices] = MeshFunction(Implicit_function_1());
+    [faces,vertices] = MeshFunction(SurfaceFunction);
     [AreaMatric,MeshLocation] = GetAreaAndLocation(faces,vertices);
     A = CreatA(AreaMatric,MeshLocation);
 
@@ -44,7 +43,7 @@ function Core()
     
     %%------------------------------------------
 
-    N_time = 10;
+    N_time = T;
     deltat = T/N_time;
     N = length(AreaMatric);
 

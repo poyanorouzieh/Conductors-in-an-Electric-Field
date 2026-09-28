@@ -1,6 +1,7 @@
 function [sigma,potential] = CalculateCore(AreaMatric,MeshLocation,charge,t,A)
     N = length(AreaMatric);
     E0 = E0Function();
+%     E0 = E0GuassFunction();
     b = Creatb(E0,MeshLocation,charge,t);
 
     x = A\b;
